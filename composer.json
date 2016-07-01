@@ -1,0 +1,20 @@
+{
+	"name": "tjm/files"
+	,"description": "File utilities for PHP"
+	,"authors": [
+		{
+			"name": "Toby Mackenzie"
+			,"email": "public@tobymackenzie.com"
+			,"homepage": "https://www.tobymackenzie.com"
+		}
+	]
+	,"license": "BSD-3-Clause"
+	,"autoload": {
+		"psr-4": {
+			"TJM\\Files\\": "src"
+		}
+	}
+	,"require": {
+		"php": ">=5.3.3"
+	}
+}
