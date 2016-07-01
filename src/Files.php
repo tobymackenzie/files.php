@@ -1,7 +1,29 @@
 <?php
 namespace TJM\Files;
 
+use Exception;
+
 class Files{
+	/*
+	Method: rmdir
+	Remove directory, recursively removing contents.
+	Sources:
+		-@ http://stackoverflow.com/a/11267139/1139122
+	*/
+	static public function rmdir($dir){
+		if($dir && is_dir($dir)){
+			foreach(glob($dir . '/{.??*,.[!.],*}', GLOB_BRACE) as $file){
+				if(is_dir($file)){
+					static::rmdir($file);
+				}else{
+					unlink($file);
+				}
+			}
+			rmdir($dir);
+		}else{
+			throw new Exception("Files::mdir(): '{$dir}' is not a directory.");
+		}
+	}
 	/*
 	Method: symlink
 	Simple passthrough to PHP symlink
