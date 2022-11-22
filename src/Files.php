@@ -37,6 +37,13 @@ class Files{
 	Symlink using relative path.  Create parent folders if they don't exist.  Do not overwrite existing file unless it is a symlink.
 	*/
 	static public function symlinkRelativelySafely($at, $from){
+		//-! dot should properly be handled in `getRelativePathTo()`
+		if(substr($at, 0, 1) !== '.' && substr($at, 0, 1) !== '/'){
+			$at = "./{$at}";
+		}
+		if(substr($from, 0, 1) !== '.' && substr($from, 0, 1) !== '/'){
+			$from = "./{$from}";
+		}
 		if(substr($at, 0, 1) !== '.' && substr($from, 0, 1) !== false){
 			$from = static::getRelativePathTo($from, $at);
 		}
